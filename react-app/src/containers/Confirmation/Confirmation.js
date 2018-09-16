@@ -2,7 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Container, Row, Col } from 'reactstrap';
+import {
+    Container,
+    Row,
+    Col
+} from 'reactstrap';
+
+// Components
 import CustomCard from '../../components/DataDisplay/CustomCard/CustomCard';
 import UploadFile from '../../components/DataEntry/UploadFile/UploadFile';   
 import CustomButton from '../../components/General/CustomButton/CustomButton';
@@ -134,37 +140,38 @@ class Confirmation extends Component {
                         </CustomCard>
                     ) : (
                         <Row>
+                            {/* Profile Image and actions */}
                             <Col lg="4">
                                 {/* .confirmation__profile */ }
-                                    <section className="confirmation__profile">
-                                        { state.signUpReducer.profileImg && 
-                                            <Fragment>
-                                                {/* .confirmation__profile__img */}
-                                                <figure className="confirmation__profile__img">
-                                                    <img src={state.signUpReducer.profileImg} alt={`Imagem de perfil do ${state.signUpReducer.name}`} />
-                                                </figure>
-                                                {/* \ .confirmation__profile__img */}
+                                <section className="confirmation__profile">
+                                    { state.signUpReducer.profileImg && 
+                                        <Fragment>
+                                            {/* .confirmation__profile__img */}
+                                            <figure className="confirmation__profile__img">
+                                                <img src={state.signUpReducer.profileImg} alt={`Imagem de perfil do ${state.signUpReducer.name}`} />
+                                            </figure>
+                                            {/* \ .confirmation__profile__img */}
 
-                                                <UploadFile
-                                                    name="picture"
-                                                    id="profile-pic"
-                                                    accept="image/jpeg, image/png, image/jpg"
-                                                    label="Editar foto"
-                                                    linkLabel
-                                                    hideImgName
-                                                />
-                                            </Fragment>
-                                        }
+                                            <UploadFile
+                                                name="picture"
+                                                id="profile-pic"
+                                                accept="image/jpeg, image/png, image/jpg"
+                                                label="Editar foto"
+                                                linkLabel
+                                                hideImgName
+                                            />
+                                        </Fragment>
+                                    }
 
-                                        <Link to="/sign-up">Editar Perfil</Link>
-                                    </section>
+                                    <Link to="/sign-up">Editar Perfil</Link>
+                                </section>
                                 {/* \ .confirmation__profile */}
                             </Col>
-
+                            {/* \ Profile Image and actions */}
+                            
+                            {/* User description and confirmation button */}
                             <Col lg="8">
-                                <p>
-                                    Eu sou o {state.signUpReducer.name} {state.signUpReducer.lastname && state.signUpReducer.lastname}, eu tenho {this.resolveAge(state.signUpReducer.age)} e você pode enviar e-mails para {state.signUpReducer.email}. Eu moro no estado do {state.signUpReducer.state}. Eu gosto de {this.resolveInterests(state.signUpReducer.interests)}. {state.signUpReducer.receiveNews && ' Por favor me envie newsletters.'} Para me contatar ligue no telefone {state.signUpReducer.phone}.
-                                </p>
+                                <p>Eu sou o {state.signUpReducer.name} {state.signUpReducer.lastname && state.signUpReducer.lastname}, eu tenho {this.resolveAge(state.signUpReducer.age)} e você pode enviar e-mails para {state.signUpReducer.email}. Eu moro no estado do {state.signUpReducer.state}. Eu gosto de {this.resolveInterests(state.signUpReducer.interests)}. {state.signUpReducer.receiveNews && ' Por favor me envie newsletters.'} Para me contatar ligue no telefone {state.signUpReducer.phone}.</p>
 
                                 <CustomButton
                                     onClick={() => this.submitData()}
@@ -176,6 +183,7 @@ class Confirmation extends Component {
                                     <p className="input-error">{ state.errors.submitError }</p>
                                 }
                             </Col>
+                            {/* \ User description and confirmation button */}
                         </Row>
                     )}
                 </Container>

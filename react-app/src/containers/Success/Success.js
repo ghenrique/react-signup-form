@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Container, } from 'reactstrap';
 
+// Form
 import { connect } from 'react-redux';
 import { reset } from 'redux-form';
 
-// Import components
+// Components
 import CustomButton from '../../components/General/CustomButton/CustomButton';
 import CustomCard from '../../components/DataDisplay/CustomCard/CustomCard';
 

@@ -74,9 +74,11 @@ class CustomMultiselect extends Component {
                     className={`${className} ${touched && error && 'has-error'}`}
                 />
 
+                {/* .custom-multiselect__selected */}
                 <ul className="custom-multiselect__selected">
                     { this.renderSelectedItems(fields) }
                 </ul>
+                {/* \ .custom-multiselect__selected */}
 
                 {touched && error && <p className="input-error">{error}</p>}
             </div>

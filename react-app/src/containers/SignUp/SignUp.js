@@ -11,7 +11,6 @@ import {
 
 // Form
 import { Form, Field, FieldArray, reduxForm } from 'redux-form';
-
 import validate from './validate';
 
 // Components

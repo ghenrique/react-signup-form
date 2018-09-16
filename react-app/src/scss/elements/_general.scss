@@ -14,15 +14,15 @@ input,
     &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: $gray-500;
         opacity: 1; /* Firefox */
-    }
+    } // &::placeholder
 
     &:-ms-input-placeholder { /* Internet Explorer 10-11 */
         color: $gray-500;
-    }
+    } // &:-ms-input-placeholder
 
     &::-ms-input-placeholder { /* Microsoft Edge */
         color: $gray-500;
-    }
+    } // &::-ms-input-placeholder
 
     &:focus,
     &:hover {
