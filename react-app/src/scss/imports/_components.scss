@@ -1,0 +1,23 @@
+/**
+ * Imports | Components
+ *
+ * This file contains all the component's stylesheets imported.
+ *
+ * It will be imported to the general scss file that compiles the whole
+ * application styles.
+ */
+
+ 
+// DataDisplay Components
+@import '../../components/DataDisplay/CustomCard/card';
+
+
+// DataEntry Components
+@import '../../components/DataEntry/CustomSlider/slider';
+@import '../../components/DataEntry/CustomMultiselect/multiselect';
+@import '../../components/DataEntry/UploadFile/upload-file';
+
+
+// Container Styles
+@import '../../containers/Home/home';
+@import '../../containers/Confirmation/confirmation';

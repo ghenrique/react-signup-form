@@ -1,0 +1,20 @@
+/**
+ * Variables
+ * 
+ * In this file, you can find the custom variables that can be used
+ * across the development.
+ */
+
+
+// Spacings
+$gutter: 20px;
+
+$sm-spacing: $gutter / 2;
+$md-spacing: $gutter;
+$lg-spacing: $gutter + ($gutter / 2);
+$xg-spacing: ($gutter * 2) + ($gutter / 2);
+
+
+// Border Radius
+$radius-sm: 5px;
+$radius-lg: 10px;

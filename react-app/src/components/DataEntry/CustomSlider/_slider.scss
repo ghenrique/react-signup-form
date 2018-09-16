@@ -1,0 +1,23 @@
+/**
+ * Custom Range Slider Styles
+ * 
+ * File destinated to override the styles from rc-slider
+ */
+
+.rc-slider {
+    width: 90%;
+    margin: 0 auto 35px;
+
+    &.has-error {
+        .rc-slider-handle {
+            border: none;
+            background-color: $danger;
+        } // .rc-slider-handle    
+    } // &.has-error
+
+    .rc-slider-handle {
+        border: none;
+        background-color: $primary;
+        transition: background-color .2s ease;
+    } // .rc-slider-handle
+} // .rc-slider

@@ -1,0 +1,22 @@
+/**
+ * Custom Card - Styles
+ */
+
+.custom-card {
+    /**
+     * Bootstrap overriding styles
+     */
+    .card {
+        background-color: $gray-100;
+    } // .card
+
+    .card-title {
+        @include font-size(25px);
+
+        color: $primary;
+    } // .card-title
+
+    &__content {
+        margin: $lg-spacing 0 0;
+    } // &__content
+} // .custom-card

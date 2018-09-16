@@ -1,0 +1,50 @@
+/*
+    --------------
+    MIXINS AND HELPERS
+    --------------
+
+    Destinated file for creating helpers and mixins
+*/
+/**
+ * Helpers and Mixins
+ * 
+ * Destinated file to include new Mixins and Functions to help
+ * in the project development.
+ */
+
+
+/* Functions */
+
+// FONTS REM - usage: @include rem(14px);
+@function rem( $target, $context: 16px ) {
+    @return ( $target / $context ) * 1rem;
+}
+
+
+// FONTS EM - usage: @include em(14px);
+@function em( $target, $context: 16 ) {
+    @return ( $target / $context ) * 1em;
+}
+
+
+/* Mixins */
+
+// FONTS - usage: @include font-size(14px);
+@mixin font-size($target, $context: 16px) {
+    font-size: $target;
+    font-size: rem($target,$context);
+}
+
+
+// CLEARFIX - usage: @include clearfix;
+@mixin clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}

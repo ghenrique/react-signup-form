@@ -1,0 +1,15 @@
+/**
+ * General SCSS file.
+ * 
+ * This file imports all the styles to compile in a single .css file.
+ */
+
+
+// Importing bootstrap styles.
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+// Default Imports
+@import './imports/settings';
+@import './imports/tools';
+@import './imports/elements';
+@import './imports/components';

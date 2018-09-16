@@ -1,0 +1,37 @@
+/**
+ * File Upload
+ * 
+ * This file contains the styles of upload file component.
+ * Its a custom component that hides the input and relates the label to it
+ * so we can have a custom button for file upload.
+ */
+
+// Hides the input file.
+[type=file] {
+    position: absolute;
+    filter: alpha(opacity=0);
+    opacity: 0;
+} // [type=file]
+
+// Styles the label
+[type=file] + label {
+    position: relative;
+
+    width: 100%;
+    margin: 0;
+    padding: $sm-spacing;
+
+    background-color: $primary;
+    border-radius: $radius-sm;
+    
+    text-align: center;
+    color: $white;
+    cursor: pointer;
+
+    transition: background-color .2s ease;
+
+    &:hover,
+    &:focus {
+        background-color: darken($primary, 7.5%);
+    } // &:hover, &:focus
+} // [type=file] + label
