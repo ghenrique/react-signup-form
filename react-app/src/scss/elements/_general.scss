@@ -9,7 +9,7 @@
 input,
 .form-control {
     margin-bottom: $sm-spacing;
-    transition: border-color .2s ease;
+    transition: border-color .4s ease;
 
     &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: $gray-500;
@@ -46,7 +46,7 @@ input,
 /* Link Styles */
 
 a {
-    transition: color .2s ease;
+    transition: color .4s ease;
 
     &:hover,
     &:focus {

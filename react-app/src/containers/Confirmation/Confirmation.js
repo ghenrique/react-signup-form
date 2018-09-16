@@ -1,14 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Container, Row, Col } from 'reactstrap';
-import CustomButton from '../../components/General/CustomButton/CustomButton';
 import CustomCard from '../../components/DataDisplay/CustomCard/CustomCard';
+import UploadFile from '../../components/DataEntry/UploadFile/UploadFile';   
+import CustomButton from '../../components/General/CustomButton/CustomButton';
+
+// Services
+import ProfileService from '../../services/profile';
 
 class Confirmation extends Component {
     state = {
-        signUpReducer: {}
+        signUpReducer: {},
+        errors: {
+            submitError: false,
+            message: ''
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -68,14 +76,49 @@ class Confirmation extends Component {
         return text;
     }
 
+    /**
+     * submitData
+     * 
+     * Will send the data object to api and proceed the request.
+     */
+    submitData = async () => {
+        // Setting the object that will be sent on request
+        const data = this.state.signUpReducer;
+
+        try {
+            // Waiting for the post to be executed
+            await ProfileService.postProfile(data);
+
+            // Resetting errors
+            this.setState({
+                errors: {
+                    ...this.state.errors,
+                    submitError: false,
+                    message: ''
+                }
+            });
+
+            this.props.history.push('/success');
+        } catch (e) {
+            // Treating error
+            this.setState({
+                errors: {
+                    ...this.state.errors,
+                    submitError: true,
+                    message: 'Houve um problema ao enviar os dados. Tente novamente mais tarde.'
+                }
+            })
+        }
+    }
+
     render() {
-        console.log(this.state.signUpReducer === null);
+        const { state } = this;
 
         return (
             <section className="confirmation">
                 <Container>
                     {/* Checking if the state is empty */}
-                    { Object.keys(this.state.signUpReducer).length === 0 && this.state.signUpReducer.constructor === Object ? (
+                    { Object.keys(state.signUpReducer).length === 0 && state.signUpReducer.constructor === Object ? (
                         <CustomCard
                             className="welcome-card"
                             title="Ops. Houve um problema ):"
@@ -84,8 +127,9 @@ class Confirmation extends Component {
 
                             <CustomButton
                                 linkButton
-                                to="/sign-up">
-                                    Ir para o formulário
+                                to="/sign-up"
+                            >
+                                Ir para o formulário
                             </CustomButton>
                         </CustomCard>
                     ) : (
@@ -93,6 +137,25 @@ class Confirmation extends Component {
                             <Col lg="4">
                                 {/* .confirmation__profile */ }
                                     <section className="confirmation__profile">
+                                        { state.signUpReducer.profileImg && 
+                                            <Fragment>
+                                                {/* .confirmation__profile__img */}
+                                                <figure className="confirmation__profile__img">
+                                                    <img src={state.signUpReducer.profileImg} alt={`Imagem de perfil do ${state.signUpReducer.name}`} />
+                                                </figure>
+                                                {/* \ .confirmation__profile__img */}
+
+                                                <UploadFile
+                                                    name="picture"
+                                                    id="profile-pic"
+                                                    accept="image/jpeg, image/png, image/jpg"
+                                                    label="Editar foto"
+                                                    linkLabel
+                                                    hideImgName
+                                                />
+                                            </Fragment>
+                                        }
+
                                         <Link to="/sign-up">Editar Perfil</Link>
                                     </section>
                                 {/* \ .confirmation__profile */}
@@ -100,8 +163,18 @@ class Confirmation extends Component {
 
                             <Col lg="8">
                                 <p>
-                                    Eu sou o {this.state.signUpReducer.name} {this.state.signUpReducer.lastname && this.state.signUpReducer.lastname}, eu tenho {this.resolveAge(this.state.signUpReducer.age)} e você pode enviar e-mails para {this.state.signUpReducer.email}. Eu moro no estado do {this.state.signUpReducer.state}. Eu gosto de {this.resolveInterests(this.state.signUpReducer.interests)}. {this.state.signUpReducer.receiveNews && ' Por favor me envie newsletters.'} Para me contatar ligue no telefone {this.state.signUpReducer.phone}.
+                                    Eu sou o {state.signUpReducer.name} {state.signUpReducer.lastname && state.signUpReducer.lastname}, eu tenho {this.resolveAge(state.signUpReducer.age)} e você pode enviar e-mails para {state.signUpReducer.email}. Eu moro no estado do {state.signUpReducer.state}. Eu gosto de {this.resolveInterests(state.signUpReducer.interests)}. {state.signUpReducer.receiveNews && ' Por favor me envie newsletters.'} Para me contatar ligue no telefone {state.signUpReducer.phone}.
                                 </p>
+
+                                <CustomButton
+                                    onClick={() => this.submitData()}
+                                >
+                                    Confirmar
+                                </CustomButton>
+
+                                { state.errors.submitError &&
+                                    <p className="input-error">{ state.errors.submitError }</p>
+                                }
                             </Col>
                         </Row>
                     )}

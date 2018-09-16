@@ -23,16 +23,39 @@ import React, { Component } from 'react';
 import { Input, Label } from 'reactstrap';
 import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
+import { change } from 'redux-form';
+
 class UploadFile extends Component {
+    state = {
+        fileName: '',
+        base64: ''
+    }
+    
     handleChange = (files) => {
-        console.log(files[0].name)
+        /**
+         * Reconize the file, convert it to base64 and set the fileName
+         */
+        if (files[0]) {
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0])
+
+            reader.onload = () => {
+                // Sending the image to the form reducer
+                this.props.dispatch(change('signUpForm', 'profileImg', reader.result))
+            }
+
+            this.setState({
+                fileName: files[0].name
+            });
+        }
     }
 
     render() {
-        const { type, id, label, onChange, ...rest } = this.props;
+        const { type, id, label, onChange, dispatch, linkLabel, hideImgName, ...rest } = this.props;
 
         return (
-            <div className="upload-file">
+            <div className={`upload-file ${linkLabel ? 'upload-file--link' : ''}`}>
                 <Input
                     {...rest}
                     id={id}
@@ -40,6 +63,12 @@ class UploadFile extends Component {
                     type="file"
                 />
                 <Label for={id}>{label}</Label>
+
+                {this.state.fileName && !hideImgName &&
+                    <div className="file-info">
+                        <p>Foto selecionada: {this.state.fileName}</p>
+                    </div>
+                }
             </div>
         );
     }
@@ -56,4 +85,4 @@ UploadFile.propTypes = {
     label: PropTypes.string,
 }
 
-export default UploadFile;
+export default connect(null)(UploadFile);

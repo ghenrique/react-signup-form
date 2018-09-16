@@ -96,9 +96,7 @@ class SignUp extends Component {
     }
 
     handleSubmit = values => {
-        console.log(values)
-
-        this.props.history.push('/confirmation');  
+        this.props.history.push('/confirmation');
     }
 
     render() {
@@ -113,6 +111,7 @@ class SignUp extends Component {
                                 <UploadFile
                                     name="picture"
                                     id="profile-pic"
+                                    accept="image/jpeg, image/png, image/jpg"
                                     label="Carregue sua Foto"
                                 />
                             </Col>

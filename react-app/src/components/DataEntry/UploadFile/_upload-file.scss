@@ -28,10 +28,24 @@
     color: $white;
     cursor: pointer;
 
-    transition: background-color .2s ease;
+    transition: background-color .4s ease;
 
     &:hover,
     &:focus {
         background-color: darken($primary, 7.5%);
     } // &:hover, &:focus
+
+    .upload-file--link & {
+        width: auto;
+        padding: 0;
+        background-color: transparent;
+        border-radius: none;
+        color: $primary;
+        transition: color .4s ease;
+
+        &:hover,
+        &:focus {
+            color: darken($primary, 7.5%);
+        } // &:hover, &:focus
+    } // .upload-file--link &
 } // [type=file] + label
