@@ -70,9 +70,9 @@ class Confirmation extends Component {
             // This forEach identifies which iteration is to apply the correct text to format the return.
             interests.forEach((item, index) => {
                 if (interestsLength === index + 2) {
-                    text += interests[index]
+                    text += interests[index] + ' e '
                 } else if (interestsLength === index + 1) {
-                    text += ' e ' + interests[index]
+                    text += interests[index]
                 } else {
                     text += interests[index] + ', '
                 }
