@@ -19,6 +19,7 @@ import ProfileService from '../../services/profile';
 class Confirmation extends Component {
     state = {
         signUpReducer: {},
+        isLoading: false,
         errors: {
             submitError: false,
             message: ''
@@ -92,11 +93,16 @@ class Confirmation extends Component {
         const data = this.state.signUpReducer;
 
         try {
+            this.setState({
+                isLoading: true
+            });
+
             // Waiting for the post to be executed
             await ProfileService.postProfile(data);
 
             // Resetting errors
             this.setState({
+                isLoading: false,
                 errors: {
                     ...this.state.errors,
                     submitError: false,
@@ -108,6 +114,7 @@ class Confirmation extends Component {
         } catch (e) {
             // Treating error
             this.setState({
+                isLoading: false,
                 errors: {
                     ...this.state.errors,
                     submitError: true,
@@ -175,6 +182,7 @@ class Confirmation extends Component {
 
                                 <CustomButton
                                     onClick={() => this.submitData()}
+                                    disabled={state.isLoading}
                                 >
                                     Confirmar
                                 </CustomButton>
