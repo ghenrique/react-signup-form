@@ -3,7 +3,7 @@ This project was create to Mirum Code Challenge
 
 ## Running the project
 
-To start the project, please, run the following commands on the Terminal:
+To start the project, please, clone the repository, go to *react-app* folder and run the following commands on the Terminal:
 * yarn install
 * yarn dev
 
