@@ -1,5 +1,5 @@
 
-This project was create to Mirum Code Challenge
+This project was created to Mirum Code Challenge
 
 ## Running the project
 
